@@ -7,7 +7,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="{{ route('create') }}">Crea libro</a>
+                @auth
+                    <p>Ciao,{{ Auth::user()->email }}</p>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-3">logout</button>
+                        </div>
+                    </form>
+                @else
+                    <a class="nav-link" aria-current="page" href="{{ route('create') }}">Crea libro</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('register') }}">Registrati</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('login') }}">Accedi</a>
+                @endauth
+
+
+
+
 
 
             </div>

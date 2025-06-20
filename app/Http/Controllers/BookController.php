@@ -39,4 +39,39 @@ class BookController extends Controller
         $books = Book::all();
         return view('index', ['books' => $books]);
     }
+    public function show(Book $book)
+    {
+        return view('show', ['book' => $book]);
+    }
+    public function edit(Book $book)
+    {
+        return view('edit', ['book' => $book]);
+    }
+    public function update(Request $request, Book $book)
+    {
+        $request->validate(
+            [
+                'name' => ['required', 'max:20'],
+                'year' => ['sometimes', 'integer'],
+                'pages' => ['required', 'integer'],
+
+            ]
+        );
+        $book->update(
+            [
+                'name' => $request->name,
+                'year' => $request->year,
+                'pages' => $request->pages
+
+
+            ]
+        );
+        return redirect()->route('create')->with('success', 'libro modificato con successo');
+    }
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect()->route('index')
+            ->with('success', 'Cancellazione avvenuta con successo!');
+    }
 }
