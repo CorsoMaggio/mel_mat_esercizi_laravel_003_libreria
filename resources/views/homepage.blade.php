@@ -11,6 +11,20 @@
                     <div><a href="{{ route('login') }}">Accedi</a> o
                         <a href="{{ route('register') }}">Registrati</a>
                     </div>
+                    <h2>Lista libri disponibili</h2>
+                    <div class="card-container-fluid d-flex">
+                        @foreach ($books as $book)
+                            <div class="card" style="width: 18rem;">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $book->name }}</h5>
+                                    <p class="card-text">Prezzo:{{ $book->price ? $book->price : 'inestimabile' }}</p>
+                                    <a href="{{ route('detail', ['book' => $book]) }}" class="btn btn-primary">Dettagli</a>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
                 @else
                     <div><a href="{{ route('create') }}">Crea un nuovo libro</a> os
                         <a href="{{ route('index') }}">visualizza la lista</a>

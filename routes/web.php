@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [BookController::class, 'homepage'])->name('homepage');
+Route::get('/', [PageController::class, 'homepage'])->name('homepage');
+Route::get('/libri/dettaglio-prodotto/{book}', [PageController::class, 'detail'])->name('detail');
+
 
 Route::middleware(['auth'])->group(function () {
     //lista libri

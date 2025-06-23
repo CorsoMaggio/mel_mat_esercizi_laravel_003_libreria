@@ -12,10 +12,7 @@ class BookController extends Controller
     {
         return view('create');
     }
-    public function homepage()
-    {
-        return view('homepage');
-    }
+
 
     public function saveBook(Request $request)
     {
