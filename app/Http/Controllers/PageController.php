@@ -11,7 +11,7 @@ class PageController extends Controller
     public function homepage()
     {
         $books = Book::all();
-        return view('homepage', ['books' => $books]);
+        return view('/pages/homepage', ['books' => $books]);
     }
 
     public function detail(Book $book)

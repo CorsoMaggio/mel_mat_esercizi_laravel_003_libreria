@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,5 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/libri/aggiorna/{book}', [BookController::class, 'update'])->name('update');
     //rotta di cancellazione
     Route::delete('/libri/{book}', [BookController::class, 'destroy'])->name('destroy');
+    Route::resource('authors', AuthorController::class);
 });
