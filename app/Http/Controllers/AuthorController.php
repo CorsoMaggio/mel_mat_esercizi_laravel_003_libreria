@@ -60,7 +60,7 @@ class AuthorController extends Controller
     public function show(Author $author)
 
     {
-        return view('authors.show');
+        return view('authors.show', compact('author'));
     }
 
     /**
@@ -68,24 +68,44 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        return view('authors.edit');
+        return view('authors.edit', compact('author'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Author $author)
 
     {
 
-        //
+        $request->validate(
+            [
+                'firstName' => ['required', 'string'],
+                'lastName' => ['sometimes', 'string'],
+                'birthDate' => ['sometimes', 'date'],
+
+            ]
+        );
+        $author->update(
+            [
+                'firstName' => $request->firstName,
+                'lastName' => $request->lastName,
+                'birthDate' => $request->birthDate
+
+
+            ]
+        );
+
+        return redirect()->route('authors.create')->with('success', 'autore aggiornato con successo.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route('authors.index')
+            ->with('success', 'Cancellazione avvenuta con successo!');
     }
 }

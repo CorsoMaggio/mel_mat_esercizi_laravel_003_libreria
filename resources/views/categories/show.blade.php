@@ -1,5 +1,5 @@
 <x-main>
-    <x-slot name='title'>Indice autore</x-slot>
+    <x-slot name='title'>Indice categoria</x-slot>
     <h1>Indice autore: {{ $author->firstName }} {{ $author->lastName }}</h1>
     <div class="card-group">
         <x-authorCard :author="$author">

@@ -4,6 +4,8 @@
     <div class="card-group">
         <x-card :book="$book">
             <p>Numero pagine: {{ $book->pages }}</p>
+            <p>autore: {{ $book->author->firstName ?? 'Non assegnato' }}
+                {{ $book->author->lastName ?? '' }}</p>
         </x-card>
     </div>
 

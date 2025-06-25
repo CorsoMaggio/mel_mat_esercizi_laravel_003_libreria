@@ -8,8 +8,8 @@
         @endif
     </div>
 
-    <x-slot name='title'>Crea nuovo libro</x-slot>
-    <h1>Inserisci un nuovo libro!</h1>
+    <x-slot name='title'>Modifica libro</x-slot>
+    <h1>Modifica</h1>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -41,12 +41,30 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput" class="form-label">Pagine</label>
-            <input type="text" value="{{ $book->year }}" class="form-control" id="exampleFormControlInput1"
+            <input type="text" value="{{ $book->pages }}" class="form-control" id="exampleFormControlInput1"
                 placeholder="numero pagine" name="pages">
             @error('pages')
                 {{ $message }}
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput" class="form-label">Autore</label>
+            <select class="form-select" name="author_id" aria-label="Default select example">
+                <option value="" @if ($book->author_id == null) selected @endif>seleziona un autore</option>
+
+                @foreach ($authors as $author)
+                    <option @if ($author->id == $book->author_id) selected @endif value="{{ $author->id }}">
+                        {{ $author->firstName }} {{ $author->lastName }}</option>
+                @endforeach
+
+
+
+            </select>
+            @error('author_id')
+                {{ $message }}
+            @enderror
+        </div>
+
 
         <button class="btn btn-primary" type="submit">aggiorna</button>
 

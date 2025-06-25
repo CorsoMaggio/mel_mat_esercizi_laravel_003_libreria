@@ -13,12 +13,19 @@
                     </div>
                 @else
                     <div>
-                        <a href="{{ route('create') }}">Crea un nuovo libro</a>
-                        <a href="{{ route('authors.create') }}">Crea un nuovo autore</a>
-
-                        <a href="{{ route('index') }}">visualizza la lista dei libri</a>
-                        <a href="{{ route('authors.index') }}">visualizza la lista degli autori</a>
+                        <a class="btn btn-secondary" href="{{ route('create') }}">Crea un nuovo libro</a>
+                        oppure
+                        <a class="btn btn-secondary" href="{{ route('authors.create') }}">Crea un nuovo autore</a>
                     </div>
+                    <br>
+                    <div>
+                        <a class="btn btn-secondary" href="{{ route('index') }}">visualizza la lista dei libri</a>
+                        oppure
+                        <a class="btn btn-secondary"href="{{ route('authors.index') }}">visualizza la lista degli autori</a>
+
+                    </div>
+
+
                 @endguest
             </div>
         </div>

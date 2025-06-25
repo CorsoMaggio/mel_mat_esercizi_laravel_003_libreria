@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -10,7 +12,9 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('create');
+        $authors = Author::all();
+        $categories = Category::all();
+        return view('create', compact('authors'), compact('categories'));
     }
 
 
@@ -28,7 +32,8 @@ class BookController extends Controller
             [
                 'name' => $request->name,
                 'year' => $request->year,
-                'pages' => $request->pages
+                'pages' => $request->pages,
+                'author_id' => $request->author_id
 
 
             ]
@@ -45,8 +50,10 @@ class BookController extends Controller
         return view('show', ['book' => $book]);
     }
     public function edit(Book $book)
+
     {
-        return view('edit', ['book' => $book]);
+        $authors = Author::all();
+        return view('edit', ['book' => $book], compact('authors'));
     }
     public function update(Request $request, Book $book)
     {
@@ -62,7 +69,8 @@ class BookController extends Controller
             [
                 'name' => $request->name,
                 'year' => $request->year,
-                'pages' => $request->pages
+                'pages' => $request->pages,
+                'author_id' => $request->author_id
 
 
             ]
@@ -70,6 +78,7 @@ class BookController extends Controller
         return redirect()->route('create')->with('success', 'libro modificato con successo');
     }
     public function destroy(Book $book)
+
     {
         $book->delete();
         return redirect()->route('index')

@@ -26,8 +26,12 @@
                                 </form>
                             </li>
                             <li><a class="dropdown-item" aria-current="page" href="{{ route('create') }}">Crea libro</a>
+                            <li><a class="dropdown-item" aria-current="page" href="{{ route('create') }}">Crea autore</a>
                             </li>
                             <li><a class="dropdown-item" aria-current="page" href="{{ route('index') }}">Lista libri</a>
+                            </li>
+                            <li><a class="dropdown-item" aria-current="page" href="{{ route('authors.index') }}">Lista
+                                    autori</a></li>
 
 
 
