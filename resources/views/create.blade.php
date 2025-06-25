@@ -72,7 +72,7 @@
         <div class="mb-3">
             @foreach ($categories as $category)
                 <div class="form-check">
-                    <input class="form-check-input" name="categories[]" type="checkbox" value=""
+                    <input class="form-check-input" name="categories[]" type="checkbox" value="{{ $category->id }}"
                         id="checkDefault-{{ $category->id }}">
                     <label class="form-check-label" for="checkDefault">
                         {{ $category->name }}

@@ -65,8 +65,19 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            @foreach ($categories as $category)
+                <div class="form-check">
+                    <input class="form-check-input" name="categories[]" type="checkbox" value="{{ $category->id }}"
+                        id="category->id" @checked ($book->categories->contains($category->id))>
+                    <label class="form-check-label" for="checkDefault">
+                        {{ $category->name }}
+                    </label>
+                </div>
+            @endforeach
 
-        <button class="btn btn-primary" type="submit">aggiorna</button>
+
+            <button class="btn btn-primary" type="submit">aggiorna</button>
 
     </form>
 

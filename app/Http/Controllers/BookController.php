@@ -28,16 +28,20 @@ class BookController extends Controller
 
             ]
         );
-        Book::create(
+        $book = Book::create(
             [
                 'name' => $request->name,
                 'year' => $request->year,
                 'pages' => $request->pages,
-                'author_id' => $request->author_id
+                'author_id' => $request->author_id,
+
 
 
             ]
+
         );
+        $book->categories()->attach($request->categories);
+
         return redirect()->route('create')->with('success', 'libro creato con successo');
     }
     public function index(Request $request)
@@ -53,7 +57,8 @@ class BookController extends Controller
 
     {
         $authors = Author::all();
-        return view('edit', ['book' => $book], compact('authors'));
+        $categories = Category::all();
+        return view('edit', compact('authors', 'book', 'categories'));
     }
     public function update(Request $request, Book $book)
     {
@@ -65,6 +70,8 @@ class BookController extends Controller
 
             ]
         );
+        $book->categories()->detach();
+        $book->categories()->attach($request->categories);
         $book->update(
             [
                 'name' => $request->name,
@@ -75,11 +82,13 @@ class BookController extends Controller
 
             ]
         );
-        return redirect()->route('create')->with('success', 'libro modificato con successo');
+
+        return redirect()->route('index')->with('success', 'libro modificato con successo');
     }
     public function destroy(Book $book)
 
     {
+        $book->categories()->detach();
         $book->delete();
         return redirect()->route('index')
             ->with('success', 'Cancellazione avvenuta con successo!');

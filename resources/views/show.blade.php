@@ -6,6 +6,13 @@
             <p>Numero pagine: {{ $book->pages }}</p>
             <p>autore: {{ $book->author->firstName ?? 'Non assegnato' }}
                 {{ $book->author->lastName ?? '' }}</p>
+            <div>
+                @foreach ($book->categories as $category)
+                    <span class="badge text-bg-info">{{ $category->name }}</span>
+                @endforeach
+            </div>
+
+
         </x-card>
     </div>
 

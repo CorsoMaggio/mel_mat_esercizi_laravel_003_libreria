@@ -1,12 +1,13 @@
 <x-main>
-    <x-slot name='title'>Lista categorie</x-slot>
+    <x-slot name='title'>Lista autori</x-slot>
     <table class="table">
 
         <thead>
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Nome </th>
-
+                <th scope="col">Cognome</th>
+                <th scope="col">Azioni</th>
 
             </tr>
         </thead>
@@ -20,31 +21,32 @@
                 </div>
             @endif
             </div>
-            <h1>Lista categorie</h1>
+            <h1>Lista autori</h1>
             <div class="card-group">
-                @foreach ($categories as $category)
+                @foreach ($authors as $author)
                     <tr>
-                        <td> {{ $category->id }}</td>
-                        <td>{{ $category->name }}</td>
+                        <td> {{ $author->id }}</td>
+                        <td>{{ $author->firstName }}</td>
+                        <td>{{ $author->lastName }}</td>
                         <td>
                             <a class="btn btn-info"
-                                href="{{ route('categories.show', ['category' => $category]) }}">Dettagli</a>
+                                href="{{ route('authors.show', ['author' => $author]) }}">Dettagli</a>
                             <a class="btn btn-warning"
-                                href="{{ route('categories.edit', ['category' => $category]) }}">Modifica</a>
+                                href="{{ route('authors.edit', ['author' => $author]) }}">Modifica</a>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#{{ $category->id }}">
+                                data-bs-target="#{{ $author->id }}">
                                 Elimina
                             </button>
 
 
                             <!-- Modal -->
-                            <div class="modal fade" id="{{ $category->id }}" tabindex="-1"
+                            <div class="modal fade" id="{{ $author->id }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <form class="modal-content"
-                                        action="{{ route('categories.destroy', ['category' => $category->id]) }}"
+                                        action="{{ route('authors.destroy', ['author' => $author->id]) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -54,8 +56,8 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            sicuro di voler eliminare <b>"
-                                                {{ $category->lastName }}"</b>?
+                                            sicuro di voler eliminare <b>"{{ $author->firstName }}
+                                                {{ $author->lastName }}"</b>?
 
                                         </div>
                                         <div class="modal-footer">
