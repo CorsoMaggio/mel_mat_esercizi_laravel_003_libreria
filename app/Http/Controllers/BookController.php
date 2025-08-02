@@ -22,7 +22,7 @@ class BookController extends Controller
     {
         $request->validate(
             [
-                'name' => ['required', 'max:20'],
+                'name' => ['required'],
                 'year' => ['sometimes', 'integer'],
                 'pages' => ['required', 'integer'],
 
